@@ -1,0 +1,146 @@
+\section{Idea Principal y Descripción del Proyecto}
+
+El proyecto denominado \textbf{Mi Trufi} consiste en el diseño e implementación de una plataforma tecnológica integral, conformada por una aplicación web y una aplicación móvil, orientada a optimizar la operatividad, el monitoreo y la experiencia de usuario en el transporte público interurbano y urbano. El sistema interconecta en tiempo real a los tres actores fundamentales del servicio: los pasajeros, los conductores o choferes, y el personal administrativo o de secretaría encargado del control y despacho de unidades.
+
+\subsection{Contexto Operativo y Caso de Estudio}
+
+Para dimensionar la necesidad y funcionamiento del sistema, se toma como referencia la dinámica real de transporte entre la comunidad de Calamuchita y la ciudad de Tarija. En este tipo de rutas, los vehículos operan bajo un esquema de salidas programadas por turnos fijos, despachando una unidad aproximadamente cada 15 minutos. 
+
+Bajo este modelo tradicional se presentan desajustes operacionales significativos: en ciertos horarios pico o paradas estratégicas, los vehículos completan su capacidad de pasajeros de manera inmediata; mientras que en otros turnos, los micros realizan el trayecto prácticamente vacíos. Asimismo, los usuarios que esperan a lo largo de la carretera carecen de certidumbre respecto al tiempo de llegada de la unidad o a la disponibilidad efectiva de asientos para abordar.
+
+\subsection{Problemática Identificada}
+
+Las limitaciones observadas en el modelo operativo actual afectan de forma diferenciada a cada uno de los actores:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Dificultades para los pasajeros:} Incertidumbre prolongada en paradas intermedias, desconocimiento sobre la ubicación en tiempo real de los vehículos y el riesgo de esperar una unidad que al llegar no dispone de espacio libre.
+    \item \textbf{Dificultades para los choferes:} Ausencia de información sobre la concentración o presencia de pasajeros en ruta, lo que provoca detenciones innecesarias o pérdida de potenciales usuarios a lo largo del trayecto.
+    \item \textbf{Dificultades para la secretaría o administración:} Dependencia de registros manuales en cuadernos o pizarras para el control de turnos cada 15 minutos, sin mecanismos para verificar el cumplimiento de itinerarios, retrasos o la distribución real de pasajeros.
+\end{enumerate}
+
+\subsection{Ecosistema de Actores de la Plataforma}
+
+La solución planteada articula las necesidades de los tres perfiles de usuario mediante funciones específicas:
+
+\begin{enumerate}
+    \item \textbf{Pasajeros (Móvil y Web):} Pueden visualizar en un mapa interactivo el desplazamiento en tiempo real de los trufis o micros asignados a la ruta. A través de la función denominada \emph{levantar la mano virtual}, el usuario marca su punto geográfico de espera, notificando al sistema su intención de viaje. Asimismo, puede verificar si el vehículo cuenta con asientos disponibles antes de su arribo.
+    \item \textbf{Choferes (Móvil):} Al comenzar su turno asignado por secretaría, activan la transmisión continua de su ubicación satelital (GPS). En su interfaz reciben indicaciones de las paradas solicitadas por pasajeros que alzaron la mano virtual y disponen de un selector rápido para reportar su nivel de ocupación: capacidad completa o número de asientos disponibles.
+    \item \textbf{Secretaría y Control (Web y Móvil):} Disponen de un panel centralizado para gestionar el rol de salidas por turnos (frecuencia de 15 minutos), registrar qué unidad se encuentra en circulación y supervisar en un mapa de control toda la flota activa en el corredor vial.
+\end{enumerate}
+
+\subsection{Diagrama de Interacción del Sistema}
+
+En la Figura~\ref{fig:flujo_actores} se detalla el esquema de comunicación e intercambio de información entre los actores y el servidor central de la plataforma.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{0.9\textwidth}{!}{%
+\begin{tikzpicture}[
+    actorBox/.style={rectangle, draw=black, fill=white, minimum width=3.4cm, minimum height=1.3cm, align=center, font=\small\bfseries, thick},
+    serverBox/.style={rectangle, draw=black, fill=gray!10, minimum width=4.5cm, minimum height=2.2cm, align=center, font=\small\bfseries, thick},
+    arrowLine/.style={-{Stealth[length=3mm]}, thick, draw=black}
+]
+
+    % Nodo Central
+    \node[serverBox] (servidor) at (0, 0) {
+        Servidor Central Mi Trufi\\
+        \vspace{0.15cm}
+        \normalfont\footnotesize 
+        (Gestión de Rutas, Turnos,\\
+        Telemetría y Notificaciones)
+    };
+
+    % Nodo Superior: Secretaría
+    \node[actorBox, above=2.2cm of servidor] (secretaria) {
+        Secretaría / Control\\
+        \vspace{0.1cm}
+        \normalfont\footnotesize Asignación de Turnos (15 min)
+    };
+
+    % Nodo Inferior Izquierdo: Chofer
+    \node[actorBox, below left=2.2cm and 1.2cm of servidor] (chofer) {
+        Chofer (Conductor)\\
+        \vspace{0.1cm}
+        \normalfont\footnotesize GPS y Estado de Cupo
+    };
+
+    % Nodo Inferior Derecho: Pasajero
+    \node[actorBox, below right=2.2cm and 1.2cm of servidor] (pasajero) {
+        Pasajero (Usuario)\\
+        \vspace{0.1cm}
+        \normalfont\footnotesize Levantado de Mano y Mapa
+    };
+
+    % Flujos de información
+    \draw[arrowLine] (secretaria.south) -- (servidor.north) 
+        node[midway, right, font=\footnotesize] {Registro de salida y turnos};
+
+    \draw[arrowLine] (chofer.north) -- (servidor.south west) 
+        node[midway, left=0.1cm, font=\footnotesize, align=right] {Ubicación GPS y\\capacidad del micro};
+
+    \draw[arrowLine] (pasajero.north) -- (servidor.south east) 
+        node[midway, right=0.1cm, font=\footnotesize, align=left] {Solicitud de parada\\(Mano levantada)};
+
+    \draw[arrowLine, dashed] (servidor.south west) -- (chofer.east) 
+        node[midway, below=0.1cm, font=\scriptsize] {Avisos de pasajeros};
+
+    \draw[arrowLine, dashed] (servidor.south east) -- (pasajero.west) 
+        node[midway, below=0.1cm, font=\scriptsize] {Ubicación de unidades};
+
+\end{tikzpicture}%
+}
+\caption{Flujo general de información e interacción entre los actores del sistema Mi Trufi.}
+\label{fig:flujo_actores}
+\end{figure}
+
+\subsection{Funcionamiento de la Solución: Levantar la Mano Virtual}
+
+La funcionalidad de \emph{levantar la mano virtual} traslada al entorno digital la práctica consuetudinaria de solicitar parada en ruta. El proceso sigue la secuencia descrita en la Figura~\ref{fig:proceso_mano}:
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    stepNode/.style={rectangle, draw=black, fill=white, minimum width=3.3cm, minimum height=1.6cm, align=center, font=\footnotesize, thick},
+    arrowNode/.style={-{Stealth[length=3mm]}, thick, draw=black}
+]
+
+    \node[stepNode] (p1) at (0,0) {
+        \textbf{Paso 1: Consulta}\\
+        El pasajero visualiza el\\mapa y la proximidad\\de las unidades en ruta.
+    };
+
+    \node[stepNode, right=1.2cm of p1] (p2) {
+        \textbf{Paso 2: Solicitud}\\
+        El pasajero activa\\<<Levantar la mano>>\\marcando su ubicación.
+    };
+
+    \node[stepNode, right=1.2cm of p2] (p3) {
+        \textbf{Paso 3: Notificación}\\
+        El chofer recibe el punto\\en pantalla y confirma si\\dispone de asientos libres.
+    };
+
+    \node[stepNode, below=1.4cm of p2] (p4) {
+        \textbf{Paso 4: Abordaje Coordinado}\\
+        La unidad recoge al usuario de forma previsible, optimizando tiempo y detenciones.
+    };
+
+    \draw[arrowNode] (p1) -- (p2);
+    \draw[arrowNode] (p2) -- (p3);
+    \draw[arrowNode] (p3.south) |- (p4.east);
+
+\end{tikzpicture}%
+}
+\caption{Secuencia operativa de la función para solicitar parada mediante la plataforma.}
+\label{fig:proceso_mano}
+\end{figure}
+
+\subsection{Beneficios Esperados del Sistema}
+
+La implementación de Mi Trufi aportará mejoras directas en la prestación del servicio:
+
+\begin{itemize}
+    \item \textbf{Reducción de tiempos de espera:} El pasajero gestiona su tiempo conociendo la posición exacta del vehículo.
+    \item \textbf{Eficiencia en el consumo y tiempos de marcha:} Los conductores planifican sus paradas en función de pasajeros confirmados en ruta.
+    \item \textbf{Transparencia y control institucional:} La secretaría adquiere capacidad de auditar frecuencias, cumplimiento de horarios de salida cada 15 minutos y rendimiento global de la línea.
+\end{itemize}
