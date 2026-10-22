@@ -1,0 +1,41 @@
+\subsection{Definición de la Solución y Enfoque de Plataformas}
+
+La solución propuesta, denominada \textbf{Mi Trufi}, se define como una plataforma tecnológica distribuida que integra servicios en la nube, cartografía digital y aplicaciones cliente especializadas para coordinar de manera armónica la oferta y la demanda del transporte público.
+
+\subsubsection{Concepto y Propuesta de Valor}
+
+El valor primordial de Mi Trufi radica en transformar un servicio tradicionalmente ciego e incierto en un ecosistema transparente e interconectado. La plataforma no pretende alterar las costumbres arraigadas de la comunidad ni imponer procesos complejos; por el contrario, digitaliza las prácticas cotidianas del transporte interurbano (como levantar la mano o esperar el turno de salida de 15 minutos), dotándolas de inmediatez y respaldo computacional.
+
+\subsubsection{Estructura de Plataformas por Perfil de Usuario}
+
+Considerando los distintos contextos físicos y operativos en los que interactúa cada usuario, la arquitectura del software descarta soluciones genéricas y adopta una separación clara de plataformas:
+
+\begin{enumerate}
+    \item \textbf{Plataforma Web (Secretaría y Administración):}
+    \begin{itemize}
+        \item \emph{Entorno operativo:} Navegadores web en computadoras de escritorio instaladas en la oficina central o terminal de despacho de la línea.
+        \item \emph{Capacidades específicas:} Permite al personal administrativo gestionar el rol diario de choferes, registrar horarios exactos de salida con el intervalo de 15 minutos, visualizar en un mapa maestro la posición de todas las unidades activas y acceder a reportes de kilometraje y puntualidad.
+    \end{itemize}
+
+    \item \textbf{Aplicación Móvil (Choferes):}
+    \begin{itemize}
+        \item \emph{Entorno operativo:} Teléfonos inteligentes con sistema operativo Android/iOS montados en soportes seguros dentro de los vehículos.
+        \item \emph{Capacidades específicas:} Diseñada con una interfaz de alta legibilidad, botones de gran tamaño y mínima distracción. Permite iniciar y finalizar el turno de conducción, emitir periódicamente la posición geográfica del vehículo en segundo plano, observar avisos de pasajeros que levantaron la mano en paradas próximas y conmutar el estado del vehículo (\emph{Disponible}, \emph{Cupo de $N$ asientos} o \emph{Lleno}).
+    \end{itemize}
+
+    \item \textbf{Aplicación Móvil (Pasajeros):}
+    \begin{itemize}
+        \item \emph{Entorno operativo:} Teléfonos inteligentes de los usuarios en situaciones de movilidad cotidiana o en paradas de carretera.
+        \item \emph{Capacidades específicas:} Despliega el mapa interactivo con las rutas disponibles, visualiza los micros que están en trayecto en tiempo real con su tiempo estimado de llegada, permite activar la función \emph{levantar la mano virtual} para reservar parada y alerta sobre la disponibilidad real de asientos en cada unidad.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Alcance y Delimitación Inicial del Proyecto}
+
+Con el fin de asegurar la viabilidad técnica y metodológica en esta primera etapa de desarrollo, se establecen los siguientes límites para el proyecto:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Alcance territorial inicial:} El sistema será implementado y validado de manera piloto en el corredor interurbano entre la comunidad de Calamuchita y la ciudad de Tarija.
+    \item \textbf{Funcionalidades comprendidas en esta fase:} Control de turnos de despacho de 15 minutos, rastreo GPS bidireccional en tiempo real, interfaz de solicitud de parada (\emph{mano alzada}), conmutación de estados de capacidad y panel de supervisión web.
+    \item \textbf{Funcionalidades reservadas para fases futuras:} No se contemplan en esta versión piloto módulos de cobro electrónico mediante código QR o pasarelas de pago bancarias, reservas anticipadas de asientos numerados ni venta de pasajes a largo plazo, manteniéndose el cobro tradicional en efectivo para no obstaculizar la adopción inicial del software.
+\end{enumerate}

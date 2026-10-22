@@ -1,6 +1,6 @@
 \section{Idea Principal y Descripción del Proyecto}
 
-El proyecto denominado \textbf{Mi Trufi} consiste en el diseño e implementación de una plataforma tecnológica integral, conformada por una aplicación web y una aplicación móvil, orientada a optimizar la operatividad, el monitoreo y la experiencia de usuario en el transporte público interurbano y urbano. El sistema interconecta en tiempo real a los tres actores fundamentales del servicio: los pasajeros, los conductores o choferes, y el personal administrativo o de secretaría encargado del control y despacho de unidades.
+El proyecto denominado \textbf{Mi Trufi} consiste en el diseño e implementación de una plataforma tecnológica integral orientada a optimizar la operatividad, el monitoreo y la experiencia de usuario en el transporte público interurbano y urbano. La arquitectura del sistema se encuentra estructurada específicamente según las necesidades operativas de cada perfil: una \textbf{plataforma web} exclusiva para la secretaría o administración de la línea de transporte, y una \textbf{aplicación móvil} orientada a los choferes y pasajeros. De este modo, el sistema interconecta en tiempo real a los tres actores fundamentales del servicio.
 
 \subsection{Contexto Operativo y Caso de Estudio}
 
@@ -23,9 +23,9 @@ Las limitaciones observadas en el modelo operativo actual afectan de forma difer
 La solución planteada articula las necesidades de los tres perfiles de usuario mediante funciones específicas:
 
 \begin{enumerate}
-    \item \textbf{Pasajeros (Móvil y Web):} Pueden visualizar en un mapa interactivo el desplazamiento en tiempo real de los trufis o micros asignados a la ruta. A través de la función denominada \emph{levantar la mano virtual}, el usuario marca su punto geográfico de espera, notificando al sistema su intención de viaje. Asimismo, puede verificar si el vehículo cuenta con asientos disponibles antes de su arribo.
-    \item \textbf{Choferes (Móvil):} Al comenzar su turno asignado por secretaría, activan la transmisión continua de su ubicación satelital (GPS). En su interfaz reciben indicaciones de las paradas solicitadas por pasajeros que alzaron la mano virtual y disponen de un selector rápido para reportar su nivel de ocupación: capacidad completa o número de asientos disponibles.
-    \item \textbf{Secretaría y Control (Web y Móvil):} Disponen de un panel centralizado para gestionar el rol de salidas por turnos (frecuencia de 15 minutos), registrar qué unidad se encuentra en circulación y supervisar en un mapa de control toda la flota activa en el corredor vial.
+    \item \textbf{Pasajeros (Aplicación Móvil):} Acceden al servicio a través de una aplicación para dispositivos móviles, adecuada para su uso en la vía pública o paradas. Permite visualizar en un mapa interactivo el desplazamiento en tiempo real de los trufis o micros asignados a la ruta. A través de la función denominada \emph{levantar la mano virtual}, el usuario marca su punto geográfico de espera, notificando al sistema su intención de viaje. Asimismo, puede verificar si el vehículo cuenta con asientos disponibles antes de su arribo.
+    \item \textbf{Choferes (Aplicación Móvil):} Utilizan una aplicación móvil optimizada para la interacción al volante. Al comenzar su turno asignado por la secretaría, activan la transmisión continua de su ubicación satelital (GPS). En su interfaz reciben indicaciones de las paradas solicitadas por pasajeros que alzaron la mano virtual y disponen de un selector rápido para reportar su nivel de ocupación: capacidad completa o número de asientos disponibles.
+    \item \textbf{Secretaría y Control (Plataforma Web):} Opera de manera exclusiva mediante un panel de control web en entorno de escritorio. Permite al personal administrativo gestionar el rol de salidas por turnos (con la frecuencia programada de 15 minutos), registrar qué chofer y unidad se encuentran en circulación, y supervisar globalmente en un mapa interactivo la totalidad de la flota activa en el corredor vial.
 \end{enumerate}
 
 \subsection{Diagrama de Interacción del Sistema}
@@ -53,21 +53,24 @@ En la Figura~\ref{fig:flujo_actores} se detalla el esquema de comunicación e in
     % Nodo Superior: Secretaría
     \node[actorBox, above=2.2cm of servidor] (secretaria) {
         Secretaría / Control\\
-        \vspace{0.1cm}
-        \normalfont\footnotesize Asignación de Turnos (15 min)
+        \vspace{0.08cm}
+        \normalfont\footnotesize (Plataforma Web)\\
+        \normalfont\footnotesize Turnos de 15 min y Despacho
     };
 
     % Nodo Inferior Izquierdo: Chofer
     \node[actorBox, below left=2.2cm and 1.2cm of servidor] (chofer) {
         Chofer (Conductor)\\
-        \vspace{0.1cm}
+        \vspace{0.08cm}
+        \normalfont\footnotesize (Aplicación Móvil)\\
         \normalfont\footnotesize GPS y Estado de Cupo
     };
 
     % Nodo Inferior Derecho: Pasajero
     \node[actorBox, below right=2.2cm and 1.2cm of servidor] (pasajero) {
         Pasajero (Usuario)\\
-        \vspace{0.1cm}
+        \vspace{0.08cm}
+        \normalfont\footnotesize (Aplicación Móvil)\\
         \normalfont\footnotesize Levantado de Mano y Mapa
     };
 

@@ -1,0 +1,19 @@
+\subsection{Introducción y Origen de la Idea}
+
+El transporte público de media distancia e interurbano constituye una de las columnas vertebrales para la movilidad económica, estudiantil y social en diversas regiones. Sin embargo, en muchas localidades este servicio continúa operando bajo esquemas analógicos y consuetudinarios que no han evolucionado al ritmo de las tecnologías de la información y la comunicación. El proyecto \textbf{Mi Trufi} surge con el propósito de superar esta brecha, ofreciendo una solución de software moderna adaptada a la dinámica particular de las líneas de trufis y micros.
+
+\subsubsection{Motivación Inicial}
+
+La concepción de Mi Trufi nace a partir de la observación directa de las dificultades cotidianas que experimentan tanto los usuarios del transporte como los conductores y operadores de línea. En rutas donde no existen paradas formalmente señalizadas con infraestructura digital, la interacción entre el pasajero y el vehículo depende exclusivamente de la presencia visual inmediata: el usuario aguarda al borde del camino sin saber si la unidad tardará cinco o cuarenta minutos, mientras que el chofer conduce a ciegas respecto a la demanda real en los siguientes kilómetros.
+
+Frente a este escenario, los desarrolladores identificaron la oportunidad de articular herramientas de geolocalización satelital en tiempo real (GPS), tecnologías web y aplicaciones móviles accesibles para crear un ecosistema coordinado. El objetivo central es dotar de certidumbre a la comunidad de pasajeros, optimizar la labor operativa del conductor y proporcionar herramientas de supervisión digital a la administración del sindicato o asociación de transporte.
+
+\subsubsection{Contextualización del Transporte Interurbano: El Caso Calamuchita -- Tarija}
+
+Para anclar el diseño del sistema en un caso de estudio real y representativo, el proyecto toma como referencia operativa la ruta que conecta la localidad de Calamuchita con la ciudad de Tarija. Esta ruta presenta características operativas fundamentales para modelar la lógica del software:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Despacho regulado por turnos de 15 minutos:} La línea opera mediante un sistema de rotación estricto donde las unidades parten secuencialmente desde la parada central cada 15 minutos. Este intervalo busca garantizar una oferta periódica, pero carece de flexibilidad cuando la demanda fluctúa imprevistamente.
+    \item \textbf{Dispersión geográfica de los pasajeros:} A lo largo de la carretera existen múltiples comunidades intermedias, cruces de caminos y zonas rurales donde los pasajeros esperan transporte de forma dispersa, sin estaciones formales ni techos de resguardo.
+    \item \textbf{Comportamiento asimétrico de la demanda:} En horarios matutinos y de retorno, las unidades suelen saturar su capacidad en las primeras paradas del trayecto, obligando a los pasajeros de paradas posteriores a esperar el siguiente turno; en contraste, durante las horas valle las unidades transitan con baja ocupación, incrementando el costo operativo por pasajero transportado.
+\end{enumerate}

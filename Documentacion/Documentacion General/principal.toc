@@ -1,0 +1,27 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Concepción e Idea del Proyecto}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Introducción y Origen de la Idea}{4}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Motivación Inicial}{4}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Contextualización del Transporte Interurbano: El Caso Calamuchita -- Tarija}{4}{subsubsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.2}Diagnóstico del Problema y Situación Actual}{5}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}La Perspectiva del Pasajero}{5}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}La Perspectiva del Chofer}{6}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}La Perspectiva de la Secretaría y Administración}{6}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Matriz Comparativa de la Situación Operacional}{6}{subsubsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.3}Definición de la Solución y Enfoque de Plataformas}{7}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Concepto y Propuesta de Valor}{7}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Estructura de Plataformas por Perfil de Usuario}{7}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Alcance y Delimitación Inicial del Proyecto}{8}{subsubsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.4}Funcionalidades Clave e Innovación Central}{9}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}La Función Insignia: <<Levantar la Mano Virtual>>}{9}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Telemetría y Monitoreo Satelital (GPS) en Tiempo Real}{9}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.3}Indicador Dinámico de Capacidad y Ocupación}{9}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.4.4}Control y Despacho Automatizado de Turnos de 15 Minutos}{10}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\numberline {1.4.5}Diagramas de Interacción y Operatividad del Sistema}{10}{subsubsection.1.4.5}%
+\contentsline {subsection}{\numberline {1.5}Objetivos del Proyecto}{10}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Objetivo General}{10}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Objetivos Específicos}{12}{subsubsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.6}Justificación e Impacto del Proyecto}{12}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Justificación Social y para el Pasajero}{12}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Justificación Operativa y Económica para la Línea y Choferes}{13}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {1.6.3}Viabilidad Preliminar del Proyecto}{13}{subsubsection.1.6.3}%

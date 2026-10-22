@@ -1,0 +1,151 @@
+\subsection{Funcionalidades Clave e Innovación Central}
+
+La plataforma Mi Trufi se sustenta en cuatro pilares funcionales diseñados para responder con precisión a las fallas operacionales identificadas en el diagnóstico.
+
+\subsubsection{La Función Insignia: <<Levantar la Mano Virtual>>}
+
+La característica distintiva del proyecto radica en digitalizar la señal física de parada mediante la funcionalidad de \emph{levantar la mano virtual}. El mecanismo opera de la siguiente manera:
+
+\begin{enumerate}[label=\arabic*.]
+    \item El pasajero abre la aplicación móvil, selecciona la línea o trayecto y pulsa el control para marcar su parada. La aplicación captura las coordenadas precisas del usuario mediante el receptor GPS del teléfono o le permite ajustar manualmente el marcador en el mapa.
+    \item El servidor procesa la posición del pasajero y calcula qué micro en servicio se aproxima hacia ese punto dentro del corredor vial.
+    \item La aplicación del chofer proyecta en su mapa un indicador visual de parada solicitada junto con una señal auditiva discreta, informando la distancia al punto de recojo.
+    \item Si el chofer dispone de espacio, el abordaje se concreta de forma coordinada, ahorrando maniobras y reduciendo la ansiedad de ambas partes.
+\end{enumerate}
+
+\subsubsection{Telemetría y Monitoreo Satelital (GPS) en Tiempo Real}
+
+A diferencia de los sistemas de transporte masivo que requieren costosos equipos embarcados dedicados, Mi Trufi aprovecha el hardware nativo de los teléfonos inteligentes de los conductores:
+
+\begin{itemize}
+    \item \textbf{Transmisión adaptativa de coordenadas:} El módulo del chofer reporta paquetes livianos de geolocalización a intervalos periódicos optimizados para no saturar el plan de datos móviles ni drenar prematuramente la batería del teléfono.
+    \item \textbf{Cálculo de tiempos estimados de llegada (ETA):} La plataforma proyecta en los dispositivos de los pasajeros la distancia y el tiempo aproximado en que el micro llegará a la parada elegida, considerando la velocidad media de avance.
+\end{itemize}
+
+\subsubsection{Indicador Dinámico de Capacidad y Ocupación}
+
+Para resolver el problema del sobrecupo en paradas intermedias, el chofer dispone de un selector táctil simple que no interfiere con la conducción:
+
+\begin{itemize}
+    \item \textbf{Estado Disponible:} Indica que la unidad cuenta con amplio espacio para recoger pasajeros a lo largo de la ruta.
+    \item \textbf{Estado Cupo Limitado ($N$ Asientos):} Permite al chofer definir cuántos asientos libres quedan (por ejemplo, 1, 2 o 3 asientos), de modo que la aplicación de los pasajeros solo admita ese número exacto de solicitudes de parada.
+    \item \textbf{Estado Lleno:} Alerta a los pasajeros en el mapa de que la unidad circula a capacidad máxima, permitiéndoles orientar su expectativa hacia el siguiente turno de salida de 15 minutos.
+\end{itemize}
+
+\subsubsection{Control y Despacho Automatizado de Turnos de 15 Minutos}
+
+El panel web de secretaría sustituye la libreta de anotaciones manuales por un sistema de colas digitales:
+
+\begin{itemize}
+    \item Programa automáticamente la grilla horaria de salidas con intervalos regulares de 15 minutos.
+    \item Registra la hora exacta en que cada chofer inicia su trayecto y valida que el vehículo en circulación corresponda al turno asignado.
+    \item Detecta retrasos anormales en el trayecto de vuelta o salidas tardías, generando métricas de cumplimiento para la directiva de la línea.
+\end{itemize}
+
+\subsubsection{Diagramas de Interacción y Operatividad del Sistema}
+
+La Figura~\ref{fig:flujo_actores} expone la articulación entre los perfiles de usuario y el servidor central, destacando la separación entre la plataforma web de secretaría y las aplicaciones móviles de campo.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{0.9\textwidth}{!}{%
+\begin{tikzpicture}[
+    actorBox/.style={rectangle, draw=black, fill=white, minimum width=3.4cm, minimum height=1.3cm, align=center, font=\small\bfseries, thick},
+    serverBox/.style={rectangle, draw=black, fill=gray!10, minimum width=4.5cm, minimum height=2.2cm, align=center, font=\small\bfseries, thick},
+    arrowLine/.style={-{Stealth[length=3mm]}, thick, draw=black}
+]
+
+    % Nodo Central
+    \node[serverBox] (servidor) at (0, 0) {
+        Servidor Central Mi Trufi\\
+        \vspace{0.15cm}
+        \normalfont\footnotesize 
+        (Gestión de Rutas, Turnos,\\
+        Telemetría y Notificaciones)
+    };
+
+    % Nodo Superior: Secretaría
+    \node[actorBox, above=2.2cm of servidor] (secretaria) {
+        Secretaría / Control\\
+        \vspace{0.08cm}
+        \normalfont\footnotesize (Plataforma Web)\\
+        \normalfont\footnotesize Turnos de 15 min y Despacho
+    };
+
+    % Nodo Inferior Izquierdo: Chofer
+    \node[actorBox, below left=2.2cm and 1.2cm of servidor] (chofer) {
+        Chofer (Conductor)\\
+        \vspace{0.08cm}
+        \normalfont\footnotesize (Aplicación Móvil)\\
+        \normalfont\footnotesize GPS y Estado de Cupo
+    };
+
+    % Nodo Inferior Derecho: Pasajero
+    \node[actorBox, below right=2.2cm and 1.2cm of servidor] (pasajero) {
+        Pasajero (Usuario)\\
+        \vspace{0.08cm}
+        \normalfont\footnotesize (Aplicación Móvil)\\
+        \normalfont\footnotesize Levantado de Mano y Mapa
+    };
+
+    % Flujos de información
+    \draw[arrowLine] (secretaria.south) -- (servidor.north) 
+        node[midway, right, font=\footnotesize] {Registro de salidas y turnos};
+
+    \draw[arrowLine] (chofer.north) -- (servidor.south west) 
+        node[midway, left=0.1cm, font=\footnotesize, align=right] {Ubicación GPS y\\capacidad del micro};
+
+    \draw[arrowLine] (pasajero.north) -- (servidor.south east) 
+        node[midway, right=0.1cm, font=\footnotesize, align=left] {Solicitud de parada\\(Mano levantada)};
+
+    \draw[arrowLine, dashed] (servidor.south west) -- (chofer.east) 
+        node[midway, below=0.1cm, font=\scriptsize] {Avisos de pasajeros};
+
+    \draw[arrowLine, dashed] (servidor.south east) -- (pasajero.west) 
+        node[midway, below=0.1cm, font=\scriptsize] {Ubicación de unidades};
+
+\end{tikzpicture}%
+}
+\caption{Flujo general de información e interacción entre los actores del sistema Mi Trufi.}
+\label{fig:flujo_actores}
+\end{figure}
+
+Asimismo, en la Figura~\ref{fig:proceso_mano} se ilustra la secuencia operativa temporal desde el momento en que un usuario consulta el servicio hasta la concreción del abordaje.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    stepNode/.style={rectangle, draw=black, fill=white, minimum width=3.3cm, minimum height=1.6cm, align=center, font=\footnotesize, thick},
+    arrowNode/.style={-{Stealth[length=3mm]}, thick, draw=black}
+]
+
+    \node[stepNode] (p1) at (0,0) {
+        \textbf{Paso 1: Consulta}\\
+        El pasajero visualiza el\\mapa y la proximidad\\de las unidades en ruta.
+    };
+
+    \node[stepNode, right=1.2cm of p1] (p2) {
+        \textbf{Paso 2: Solicitud}\\
+        El pasajero activa\\<<Levantar la mano>>\\marcando su ubicación.
+    };
+
+    \node[stepNode, right=1.2cm of p2] (p3) {
+        \textbf{Paso 3: Notificación}\\
+        El chofer recibe el punto\\en pantalla y confirma si\\dispone de asientos libres.
+    };
+
+    \node[stepNode, below=1.4cm of p2] (p4) {
+        \textbf{Paso 4: Abordaje Coordinado}\\
+        La unidad recoge al usuario de forma previsible, optimizando tiempo y detenciones.
+    };
+
+    \draw[arrowNode] (p1) -- (p2);
+    \draw[arrowNode] (p2) -- (p3);
+    \draw[arrowNode] (p3.south) |- (p4.east);
+
+\end{tikzpicture}%
+}
+\caption{Secuencia operativa de la función para solicitar parada mediante la plataforma.}
+\label{fig:proceso_mano}
+\end{figure}

@@ -1,0 +1,57 @@
+\subsection{Diagnóstico del Problema y Situación Actual}
+
+El diagnóstico de la situación actual evidencia que las ineficiencias del transporte interurbano no son hechos aislados, sino el resultado directo de una desconexión informativa sistémica entre los actores involucrados.
+
+\subsubsection{La Perspectiva del Pasajero}
+
+Desde la óptica del usuario habitual, el modelo tradicional genera las siguientes problemáticas críticas:
+
+\begin{itemize}
+    \item \textbf{Tiempos de espera excesivos e impredecibles:} El usuario debe apostarse al borde del camino con antelación indefinida, expuesto a condiciones climáticas adversas (lluvia, calor intenso o frío), al no disponer de un mecanismo para conocer la posición ni el tiempo estimado de arribo del micro.
+    \item \textbf{Frustración por sobrecupo en ruta:} Es frecuente que, tras esperar un lapso considerable, la unidad que aproxima pase de largo o se niegue a detenerse por encontrarse totalmente llena, forzando una nueva espera de 15 minutos adicionales para el siguiente turno.
+    \item \textbf{Imposibilidad de planificación personal:} La falta de certidumbre impide a estudiantes y trabajadores organizar con precisión sus salidas hacia sus centros de estudio o labores cotidianas.
+\end{itemize}
+
+\subsubsection{La Perspectiva del Chofer}
+
+Para el conductor en servicio, las dificultades operacionales repercuten en su desgaste físico y en la rentabilidad de su jornada:
+
+\begin{itemize}
+    \item \textbf{Operación a ciegas:} El chofer desconoce si a dos o tres kilómetros de distancia se encuentran pasajeros esperando, lo que le impide regular de forma óptima su velocidad crucero.
+    \item \textbf{Frenadas y detenciones improductivas:} En ocasiones el conductor reduce la marcha o se detiene en cruces habituales donde no hay personas, incrementando el desgaste mecánico de frenos y consumiendo combustible innecesariamente.
+    \item \textbf{Conflictos por exceso de pasajeros:} La presión de los usuarios por subir a vehículos saturados expone al chofer a sanciones de tránsito y a tensiones innecesarias con los pasajeros durante el trayecto.
+\end{itemize}
+
+\subsubsection{La Perspectiva de la Secretaría y Administración}
+
+En la terminal o punto de salida, la persona encargada de la secretaría ejerce el control mediante métodos arcaicos:
+
+\begin{itemize}
+    \item \textbf{Registro manual en cuadernos o pizarras:} La asignación de la hora de salida de cada turno (cada 15 minutos) se anota en papel, propiciando errores humanos, borrones o pérdidas de información histórica.
+    \item \textbf{Pérdida de trazabilidad tras la partida:} Una vez que el micro abandona la parada central, la administración pierde contacto visual y operativo con la unidad; desconoce si sufrió un desperfecto mecánico, si se retrasó por tráfico o si se desvió de su ruta regular.
+    \item \textbf{Imposibilidad de resolver quejas de usuarios:} Ante reclamos de pasajeros respecto a micros que no pasaron o cobros indebidos, la administración carece de registros digitales auditables para contrastar los hechos.
+\end{itemize}
+
+\subsubsection{Matriz Comparativa de la Situación Operacional}
+
+A fin de sintetizar las diferencias fundamentales entre el esquema imperante y el propuesto por la plataforma, la Tabla~\ref{tab:comparativa_sistema} presenta una comparación detallada de variables clave.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparación entre el Modelo Operativo Tradicional y el Sistema Mi Trufi}
+\label{tab:comparativa_sistema}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{4.2cm} p{6.2cm} p{6.5cm}}
+\toprule
+\textbf{Variable de Control} & \textbf{Modelo Tradicional (Sin Mi Trufi)} & \textbf{Modelo Propuesto (Con Mi Trufi)} \\
+\midrule
+Localización de unidades & Inexistente; visual al aproximarse & Rastreo GPS en tiempo real en mapa móvil \\
+Aviso de abordaje en ruta & Señas físicas a mano alzada & Función digital <<Levantar la mano virtual>> \\
+Visibilidad de asientos & Desconocida hasta que el micro para & Indicador dinámico de cupo (Disponible/Lleno) \\
+Registro de despachos & Cuadernos y pizarras manuales & Base de datos digital centralizada \\
+Control de turnos (15 min) & Monitoreo manual por la secretaria & Asignación y cronometraje web automatizado \\
+Trazabilidad de ruta & Se pierde al abandonar la terminal & Monitoreo cartográfico continuo en panel web \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
